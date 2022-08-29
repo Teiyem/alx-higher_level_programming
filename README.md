@@ -1,3 +1,3 @@
-ALX Python Programming
+# ALX Python Programming
 
-### Python!!!! The great last language I'll be learning..
+### Python!!!! Nothing beats the smell of freshly made py..
