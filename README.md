@@ -1,3 +1,3 @@
 # ALX Python Programming
 
-### Python!!!! Nothing beats the smell of freshly made py..
+### Python, Not the snake but the language!!!! Nothing beats the smell of freshly made py..
