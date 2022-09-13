@@ -2,15 +2,17 @@
 #include <Python.h>
 
 /**
- * print_python_bytes - Prints bytes information
- *
- * @p: Python Object
- * Return: no return
+ * print_python_bytes - Prints the size of the bytes object, the string representation
+ * of the bytes object, and the first 10 bytes of the bytes object
+ * @p: Pointer to the Python object
+ * Return: void
  */
 void print_python_bytes(PyObject *p)
 {
-	char *string;
-	long int size, i, limit;
+	char *str;
+	long int size;
+	long int i;
+	long int limit;
 
 	setbuf(stdout, NULL);
 
@@ -23,10 +25,10 @@ void print_python_bytes(PyObject *p)
 	}
 
 	size = ((PyVarObject *)(p))->ob_size;
-	string = ((PyBytesObject *)p)->ob_sval;
+	str = ((PyBytesObject *)p)->ob_sval;
 
 	printf("  size: %ld\n", size);
-	printf("  trying string: %s\n", string);
+	printf("  trying string: %s\n", str);
 
 	if (size >= 10)
 		limit = 10;
@@ -36,20 +38,19 @@ void print_python_bytes(PyObject *p)
 	printf("  first %ld bytes:", limit);
 
 	for (i = 0; i < limit; i++)
-		if (string[i] >= 0)
-			printf(" %02x", string[i]);
+		if (str[i] >= 0)
+			printf(" %02x", str[i]);
 		else
-			printf(" %02x", 256 + string[i]);
+			printf(" %02x", 256 + str[i]);
 
 	printf("\n");
 	setbuf(stdout, NULL);
 }
 
 /**
- * print_python_float - Prints float information
- *
- * @p: Python Object
- * Return: no return
+ * print_python_float - Prints the value of a Python float object
+ * @p: Pointer to the Python object
+ * Return: void
  */
 void print_python_float(PyObject *p)
 {
@@ -74,14 +75,15 @@ void print_python_float(PyObject *p)
 }
 
 /**
- * print_python_list - Prints list information
- *
- * @p: Python Object
- * Return: no return
+ * print_python_list - Prints the size of the list,
+ * the size of the allocated memory for the list, and the type of each element in the list
+ * @p: Pointer to a Python object
+ * Return: void
  */
 void print_python_list(PyObject *p)
 {
-	long int size, i;
+	long int size;
+	long int i;
 	PyListObject *list;
 	PyObject *obj;
 
