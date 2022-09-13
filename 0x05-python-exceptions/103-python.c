@@ -1,10 +1,5 @@
+#include <stdio.h>
 #include <Python.h>
-#include <object.h>
-#include <listobject.h>
-#include <bytesobject.h>
-#include <floatobject.h>
-#include <stdlib.h>
-#include <float.h>
 
 /**
  * print_python_bytes - Prints the size of the bytes object, the string representation
