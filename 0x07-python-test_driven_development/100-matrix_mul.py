@@ -1,15 +1,12 @@
 #!/usr/bin/python3
-
 '''
 This is "100-matrix_mul" module
 It multiplies two matrices and returns the result.
 '''
 
 def matrix_mul(m_a, m_b):
-    """
-    Return the matrix resulting of
-    the multiplication of m_a and m_b.
-    """
+    """Return the matrix resulting of
+    the multiplication of m_a and m_b."""
 
     if type(m_a) is not list:
         raise TypeError("m_a must be a list")
