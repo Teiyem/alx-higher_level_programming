@@ -5,7 +5,6 @@ This is "100-matrix_mul" module
 It multiplies two matrices and returns the result.
 '''
 
-
 def matrix_mul(m_a, m_b):
     """
     Return the matrix resulting of
