@@ -13,6 +13,7 @@ def text_indentation(text):
     Text must be a string
     There should be no space at the beginning or end of each printed line
     """
+
     if type(text) is not str:
         raise TypeError("text must be a string")
 
