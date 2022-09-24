@@ -1,67 +1,91 @@
 #!/usr/bin/python3
+"""Defination classes of singly linked list"""
+
 
 class Node:
+    """Defines a node of a singly linked list"""
 
     def __init__(self, data, next_node=None):
+        """Initializes node data
+        Args:
+            data (int): value to be assigned to `data`
+            next_node (Node): object of type Node
+        Raises:
+            TypeError: `data` isn't an integer or `next_node` not a
+                        node object
+        """
         if not isinstance(data, int):
             raise TypeError("data must be an integer")
-        self.__data = data
-        if next_node is not None and not isinstance(next_node, Node):
+        if not isinstance(next_node, Node) and next_node is not None:
             raise TypeError("next_node must be a Node object")
+        self.__data = data
         self.__next_node = next_node
 
     @property
     def data(self):
+        """retrieves value of data attribute"""
         return self.__data
 
     @data.setter
     def data(self, value):
+        """Sets a new value to `data` attribute
+        Args:
+            value (int): number to assign to `data`
+        Raises:
+            TypeError: if data isn't an integer
+        """
         if not isinstance(value, int):
             raise TypeError("data must be an integer")
         self.__data = value
 
     @property
     def next_node(self):
+        """retrieves value of `next_node`"""
         return self.__next_node
 
     @next_node.setter
     def next_node(self, value):
-        if value is not None and not isinstance(value, Node):
+        """Sets a new value to `next_node`
+        Args:
+            value (Node): object of Noden to assign to `next_node`
+        Raises:
+            TypeError: if value is not a Node object
+        """
+        if not isinstance(value, Node) and value is not None:
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
-    def __str__(self):
-        return str(self.__data)
-
 
 class SinglyLinkedList:
+    """Defines implementation of a singly linked list"""
 
     def __init__(self):
+        """Initializes instance data"""
         self.__head = None
 
-    def sorted_insert(self, value):
-        if not isinstance(value, int):
-            raise TypeError("data must be an integer")
-        tmp = self.__head
-        if tmp is None:
-            self.__head = Node(value)
-        elif tmp.data > value:
-            new = Node(value, tmp)
-            self.__head = new
-        else:
-            while tmp.next_node is not None:
-                if tmp.next_node.data > value:
-                    break
-                tmp = tmp.next_node
-            new = Node(value, tmp.next_node)
-            tmp.next_node = new
-
     def __str__(self):
-        string = ''
-        if self.__head is None:
-            return string
-        tmp = self.__head
-        while tmp is not None:
-            string += str(tmp.data) + '\n'
-            tmp = tmp.next_node
-        return string[:-1]
+        """Prints the entire list in stdout"""
+        head = self.__head
+        values = []
+        while head is not None:
+            values.append("{}".format(head.data))
+            head = head.next_node
+        return "\n".join(values)
+
+    def sorted_insert(self, value):
+        """Inserts a new Node into the list
+        Args:
+            value (int): integer to assign to `data` of Node object
+        """
+        head = self.__head
+        if head is None or (head is not None and head.data >= value):
+            new_node = Node(value, head)
+            self.__head = new_node
+            return
+        while head is not None:
+            next_node = head.next_node
+            if next_node is None or next_node.data >= value:
+                new_node = Node(value, next_node)
+                head.next_node = new_node
+                break
+            head = next_node
