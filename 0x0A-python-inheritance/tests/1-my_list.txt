@@ -1,123 +1,104 @@
-The ``my_list`` module
-=============================
+Test for 1-my_list.py
+-------------------------------------------
 
-Using ``my_list``
------------------------------
+case 0: import
+>>> MyList = __import__('1-my_list').MyList
+>>>
+-------------------------------------------
 
-Importing the function to test
+case 1: common case
+
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(4)
+>>> my_list.append(2)
+>>> my_list.append(3)
+>>> my_list.append(5)
+>>> print(my_list)
+[1, 4, 2, 3, 5]
+>>> my_list.print_sorted()
+[1, 2, 3, 4, 5]
+>>> print(my_list)
+[1, 4, 2, 3, 5]
+>>>
+
+-------------------------------------------
+
+case 2: not defined object
 
 >>> MyList = __import__('1-my_list').MyList
+>>> my_list2.print_sorted()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'my_list2' is not defined
+>>>
 
------------------------------
-Begin test cases:
->>> my_list = MyList()
->>> my_list.append(4.5)
->>> my_list.append(1.3)
->>> my_list.append(7.5)
->>> print(my_list)
-[4.5, 1.3, 7.5]
+-------------------------------------------
+
+case 3: passed a list
+
+>>> a = [1, 9, 4]
+>>> my_list = MyList(a)
 >>> my_list.print_sorted()
-[1.3, 4.5, 7.5]
->>> my_list = MyList()
->>> my_list.append("hi")
->>> my_list.append("bye")
->>> my_list.append("ciao")
->>> print(my_list)
-['hi', 'bye', 'ciao']
->>> my_list.print_sorted()
-['bye', 'ciao', 'hi']
->>> my_list = MyList()
->>> print(my_list)
-[]
+[1, 4, 9]
+>>>
+
+-------------------------------------------
+
+case 4: empty list
+
+>>> a = []
+>>> my_list = MyList(a)
 >>> my_list.print_sorted()
 []
+>>>
+
+-------------------------------------------
+
+case 5: unique number
+
 >>> my_list = MyList()
->>> my_list.append(None)
->>> my_list.append(None)
->>> my_list.append(None)
+>>> my_list.append(1)
+>>> my_list.print_sorted()
+[1]
 >>> print(my_list)
-[None, None, None]
+[1]
+>>>
+
+-------------------------------------------
+
+case 6: same number
+
+>>> my_list2 = MyList()
+>>> my_list2.append(1)
+>>> my_list2.append(1)
+>>> my_list2.append(1)
+>>> my_list2.append(1)
+>>> my_list2.print_sorted()
+[1, 1, 1, 1]
+>>>
+
+-------------------------------------------
+
+case 7: parent object
+>>> my_list = [1, 2, 3]
 >>> my_list.print_sorted()
 Traceback (most recent call last):
-  ...
-TypeError: unorderable types: NoneType() < NoneType()
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'print_sorted'
+>>>
+
+-------------------------------------------
+
+case 8: negative numbers
+
+>>> MyList = __import__('1-my_list').MyList
 >>> my_list = MyList()
->>> my_list.append([1, 3], [4, 1], [6, 4])
-Traceback (most recent call last):
-  ...
-TypeError: append() takes exactly one argument (3 given)
->>> my_list.append([1, 3])
->>> my_list.append([4, 2])
->>> my_list.append([9, 5])
->>> print(my_list)
-[[1, 3], [4, 2], [9, 5]]
+>>> my_list.append(5)
+>>> my_list.append(1)
+>>> my_list.append(-1)
+>>> my_list.append(51)
+>>> my_list.append(-5)
 >>> my_list.print_sorted()
-[[1, 3], [4, 2], [9, 5]]
->>> my_list.append([2, 6])
->>> print(my_list)
-[[1, 3], [4, 2], [9, 5], [2, 6]]
->>> my_list.print_sorted()
-[[1, 3], [2, 6], [4, 2], [9, 5]]
->>> my_list = MyList()
->>> my_list.append("hello")
->>> my_list.append(3)
->>> my_list.append('y')
->>> print(my_list)
-['hello', 3, 'y']
->>> my_list.print_sorted()
-Traceback (most recent call last):
-  ...
-TypeError: unorderable types: int() < str()
->>> my_list = MyList()
->>> my_list.append('y')
->>> my_list.append(None)
->>> print(my_list)
-['y', None]
->>> my_list.print_sorted()
-Traceback (most recent call last):
-  ...
-TypeError: unorderable types: NoneType() < str()
->>> my_list = MyList()
->>> my_list.append((0, "hi", False))
->>> my_list.append(("no", 'y'))
->>> my_list.append((1.2, 8.6))
->>> print(my_list)
-[(0, 'hi', False), ('no', 'y'), (1.2, 8.6)]
->>> my_list.print_sorted()
-Traceback (most recent call last):
-  ...
-TypeError: unorderable types: str() < int()
->>> my_list = MyList([2, 3, 6, 7])
->>> print(my_list)
-[2, 3, 6, 7]
->>> my_list.print_sorted()
-[2, 3, 6, 7]
->>> my_list = MyList([7, 6, 3, 2])
->>> print(my_list)
-[7, 6, 3, 2]
->>> my_list.print_sorted()
-[2, 3, 6, 7]
->>> my_list = MyList([6, 2, 7, 3])
->>> print(my_list)
-[6, 2, 7, 3]
->>> my_list.print_sorted()
-[2, 3, 6, 7]
->>> my_list = MyList(True, False)
-Traceback (most recent call last):
-  ...
-TypeError: list() takes at most 1 argument (2 given)
->>> my_list = MyList([True, False])
->>> print(my_list)
-[True, False]
->>> my_list.print_sorted()
-[False, True]
->>> my_list = MyList([(3, 4), (1, 2)])
->>> print(my_list)
-[(3, 4), (1, 2)]
->>> my_list.print_sorted()
-[(1, 2), (3, 4)]
->>> my_list = MyList([(3, 3), (3, 2)])
->>> print(my_list)
-[(3, 3), (3, 2)]
->>> my_list.print_sorted()
-[(3, 2), (3, 3)]
+[-5, -1, 1, 5, 51]
+>>>
